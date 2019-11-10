@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import RecipePage from './layout/RecipePage';
+import Header from './layout/Header';
+import recipeData from './RecipeData';
 import './App.css';
+import Form from './layout/Form';
+import Home from './layout/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch
+} from 'react-router-dom';
+import Main from './Main';
 
-function App() {
+export default function App() {
+  const [data, setData] = useState(null);
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    setData(recipeData);
+  }, []);
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+  console.log(recipeData);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path='/app'>
+          <Main />
+        </Route>
+        <Route path='/form' component={Form} />
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
