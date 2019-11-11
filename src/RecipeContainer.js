@@ -1,38 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Header from './layout/Header';
-import RecipePage from './layout/RecipePage';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import RecipePage from "./layout/RecipePage";
 
 function getRecipeById(id) {
-  console.log(id);
-
-  return fetch(`/data/${id}.json`)
-    .then(response => {
-      console.log(response);
-
-      return response.json();
-    })
-    .then(json => {
-      console.log(json);
-      return 'help';
-    });
+  return fetch(`/data/${id}.json`).then(response => response.json());
 }
 
 export default function RecipeContainer() {
   const { recipeId } = useParams();
   const [recipeItem, setRecipeItem] = useState(null);
   useEffect(() => {
-    // getRecipeById(recipeId).then(item => {
-    //   console.log(item);
-    //   setRecipeItem(item);
-    // });
-    getRecipeById(recipeId);
+    getRecipeById(recipeId).then(item => setRecipeItem(item));
   }, [recipeId]);
   if (recipeItem === null) return <p>Loading</p>;
-  return (
-    <>
-      {/* <Header /> */}
-      <RecipePage item={recipeItem} />
-    </>
-  );
+  return <RecipePage item={recipeItem} />;
 }

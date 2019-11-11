@@ -1,8 +1,8 @@
-import React from 'react';
-import Instructions from '../Components/Instructions';
-import '../Components/step.css';
-import { Grid, Paper, Typography, Card } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import Instructions from "../Components/Instructions";
+import "../Components/step.css";
+import { Grid, Paper, Typography, Card } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 // import InstructionSlides from "./InstructionSlides";
 const useStyles = makeStyles({
   card: {
@@ -10,9 +10,9 @@ const useStyles = makeStyles({
     marginBottom: 100
   },
   bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)'
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)"
   },
   title: {
     fontSize: 14
@@ -21,10 +21,10 @@ const useStyles = makeStyles({
     marginBottom: 12
   },
   paper: {
-    textAlign: 'center'
+    textAlign: "center"
   },
   paper2: {
-    textAlign: 'start'
+    textAlign: "start"
   },
   margin: {
     marginTop: 50
@@ -37,30 +37,28 @@ function Step({ step, index }) {
     <div id={`step${index + 1}`}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Typography variant='h5' className={classes.paper}>
+          <Typography variant="h5" className={classes.paper}>
             {step.name}
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant='h6'>Ingredients</Typography>
+          <Typography variant="h6">Ingredients</Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography className={classes.paper}>
-            <ol>
-              {step.ingredients.map(ingredient => (
-                <li
-                  key={`${ingredient.measurement}-${ingredient.name}-${ingredient.id}`}
-                >
-                  {ingredient.measurement} of{' '}
-                  {ingredient.id ? (
-                    <a href={ingredient.id}>{ingredient.name}</a>
-                  ) : (
-                    ingredient.name
-                  )}
-                </li>
-              ))}
-            </ol>
-          </Typography>
+          <ol>
+            {step.ingredients.map(ingredient => (
+              <li
+                key={`${ingredient.measurement}-${ingredient.name}-${ingredient.id}`}
+              >
+                {ingredient.measurement} of{" "}
+                {ingredient.id ? (
+                  <a href={ingredient.id}>{ingredient.name}</a>
+                ) : (
+                  ingredient.name
+                )}
+              </li>
+            ))}
+          </ol>
         </Grid>
         <Grid item xs={12}>
           <Typography className={classes.paper}>Instructions</Typography>
